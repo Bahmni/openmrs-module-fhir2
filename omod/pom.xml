@@ -6,7 +6,7 @@
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>fhir2-omod</artifactId>
+	<artifactId>fhir2-ipd-omod</artifactId>
 	<packaging>jar</packaging>
 	<name>FHIR2 OMOD</name>
 	<description>OMOD for FHIR2</description>
