@@ -1076,6 +1076,7 @@
             <column name="execution_start_time" type="datetime"/>
             <column name="execution_end_time" type="datetime"/>
             <column name="task_code" type="int"/>
+            <column name="comments" type="varchar(255)"/>
         </addColumn>
         <addForeignKeyConstraint baseTableName="fhir_task" baseColumnNames="task_code"
                                  constraintName="task_code_fk"
