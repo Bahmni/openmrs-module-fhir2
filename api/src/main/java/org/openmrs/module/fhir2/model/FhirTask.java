@@ -159,4 +159,10 @@ public class FhirTask extends BaseOpenmrsMetadata {
 	@Column(name = "execution_end_time")
 	private Date executionEndTime;
 	
+	/**
+	 * Comment made about the task
+	 */
+	@Column(name = "comment")
+	private String comment;
+	
 }

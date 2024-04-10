@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 import lombok.AccessLevel;
 import lombok.Setter;
+import org.hl7.fhir.r4.model.Annotation;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Period;
 import org.hl7.fhir.r4.model.Task;
@@ -141,6 +142,10 @@ public class TaskTranslatorImpl implements TaskTranslator {
 			fhirTask.setExecutionPeriod(period);
 		}
 		
+		if (openmrsTask.getComment() != null) {
+			fhirTask.addNote(new Annotation().setText(openmrsTask.getComment()));
+		}
+		
 		fhirTask.setAuthoredOn(openmrsTask.getDateCreated());
 		
 		if (openmrsTask.getDateChanged() != null) {
@@ -224,6 +229,10 @@ public class TaskTranslatorImpl implements TaskTranslator {
 		if (fhirTask.hasPartOf()) {
 			openmrsTask.setPartOfReferences(
 			    fhirTask.getPartOf().stream().map(referenceTranslator::toOpenmrsType).collect(Collectors.toSet()));
+		}
+		
+		if (fhirTask.hasNote()) {
+			openmrsTask.setComment(fhirTask.getNoteFirstRep().getText());
 		}
 		
 		openmrsTask.setName(FhirConstants.TASK + "/" + fhirTask.getId());
